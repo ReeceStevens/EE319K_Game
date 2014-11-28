@@ -6,6 +6,7 @@
 #include "LCD.h"
 #include "LCD.s"
 #include "Nokia5110.h"
+#include "Resources.c"
 // Setup for the file structure: 
 //     Controls.c (includes ADC, GPIO buttons)
 //     Communication.c (includes UART and FIFO)
@@ -26,6 +27,19 @@
 //                   enemies or other player for points.
 //                   Try to get highest score without
 //                   running out of lives.
+
+#define ENEMY_HEIGHT    10
+
+void startScreen(int mode){
+    LCD_ClearBuffer();
+    LCD_DisplayBuffer();
+    LCD_PrintBMP(0, ENEMY_HEIGHT - 1, SmallEnemy30PointA, 0);
+    LCD_PrintBMP(16, ENEMY_HEIGHT - 1, SmallEnemy30PointB, 0);
+    LCD_PrintBMP(32, ENEMY_HEIGHT - 1, SmallEnemy30PointA, 0);
+    LCD_PrintBMP(48, ENEMY_HEIGHT - 1, SmallEnemy30PointB, 0); 
+    LCD_PrintBMP(64, ENEMY_HEIGHT - 1, SmallEnemy30PointA, 0);
+    LCD_DisplayBuffer(); 
+}
 
 int main(void){
     //TExaS_Init(SSI0_Real_Nokia5110_Scope); // Sets system clock to 80 MHz
