@@ -3,7 +3,7 @@
 // Use SSI0 to send an 8-bit code to the Nokia5110 48x84
 // pixel LCD to display text, images, or other information.
 // Daniel Valvano
-// October 20, 2014
+// September 16, 2013
 
 // Font table, initialization, and other functions based
 // off of Nokia_5110_Example from Spark Fun:
@@ -13,8 +13,8 @@
 // http://dlnmh9ip6v2uc.cloudfront.net/datasheets/LCD/Monochrome/Nokia_5110_Example.pde
 
 /* This example accompanies the book
-   "Embedded Systems: Real Time Interfacing to Arm Cortex M Microcontrollers",
-   ISBN: 978-1463590154, Jonathan Valvano, copyright (c) 2014
+   "Embedded Systems: Introduction to ARM Cortex M Microcontrollers",
+   ISBN: 978-1469998749, Jonathan Valvano, copyright (c) 2014
 
  Copyright 2014 by Jonathan W. Valvano, valvano@mail.utexas.edu
     You may use, edit, run or distribute this file
@@ -28,15 +28,7 @@
  http://users.ece.utexas.edu/~valvano/
  */
 
-
-// *************************************************************
-// ***************Be careful************************************
-// ** There are multiple Nokia5110 boards in the world,       **
-// ** some with different pin numbers,                        **
-// ** but all with the same basic signals                     **
-// *************************************************************
-
-// One type of Nokia 5110
+// Blue Nokia 5110
 // ---------------
 // Signal        (Nokia 5110) LaunchPad pin
 // Reset         (RST, pin 1) connected to PA7
@@ -48,7 +40,7 @@
 // back light    (BL,  pin 7) not connected, consists of 4 white LEDs which draw ~80mA total
 // Ground        (Gnd, pin 8) ground
 
-// Another type of Nokia 5110 (LCD-10168)
+// Red SparkFun Nokia 5110 (LCD-10168)
 // -----------------------------------
 // Signal        (Nokia 5110) LaunchPad pin
 // 3.3V          (VCC, pin 1) power
@@ -61,10 +53,11 @@
 // back light    (LED, pin 8) not connected, consists of 4 white LEDs which draw ~80mA total
 
 
+
 // Contrast value 0xB1 looks good on red SparkFun
 // and 0xB8 looks good on blue Nokia 5110.
 // Adjust this from 0xA0 (lighter) to 0xCF (darker) for your display.
-#define CONTRAST                0xB1
+#define CONTRAST                0xB9
 
 
 //********LCD_Init*****************
@@ -103,6 +96,14 @@ void LCD_OutChar(char data);
 // assumes: LCD is in default horizontal addressing mode (V = 0)
 void LCD_OutString(char *ptr);
 
+//********LCD_OutDec*****************
+// Output a 16-bit number in unsigned decimal format with a
+// fixed size of five right-justified digits of output.
+// Inputs: n  16-bit unsigned number
+// Outputs: none
+// assumes: LCD is in default horizontal addressing mode (V = 0)
+void LCD_OutDec(uint16_t n);
+
 //********LCD_Goto*****************
 // Move the cursor to the desired X- and Y-position.  The
 // next character will be printed here.  X=0 is the leftmost
@@ -110,7 +111,7 @@ void LCD_OutString(char *ptr);
 // inputs: newX  new X-position of the cursor (0<=newX<=11)
 //         newY  new Y-position of the cursor (0<=newY<=5)
 // outputs: none
-void LCD_Goto(uint8_t newX, uint8_t newY);
+void LCD_Goto(uint32_t newX, uint32_t newY);
 
 //********LCD_Clear*****************
 // Clear the LCD by writing zeros to the entire screen and
@@ -126,51 +127,37 @@ void LCD_Clear(void);
 // assumes: LCD is in default horizontal addressing mode (V = 0)
 void LCD_DrawFullImage(const uint8_t *ptr);
 
-//-----------------------LCD_OutDec-----------------------
-// Output a 32-bit number in unsigned decimal format
-// Input: data is a 32-bit unsigned number
-// Output: none
-// students implement this as part of Lab 7
-void LCD_OutDec(uint32_t data);
+//********LCD_PrintBMP*****************
+// Bitmaps defined above were created for the LM3S1968 or
+// LM3S8962's 4-bit grayscale OLED display.  They also
+// still contain their header data and may contain padding
+// to preserve 4-byte alignment.  This function takes a
+// bitmap in the previously described format and puts its
+// image data in the proper location in the buffer so the
+// image will appear on the screen after the next call to
+//   LCD_DrawFullImage(Screen);
+// The interface and operation of this process is modeled
+// after RIT128x96x4_BMP(x, y, image);
+// inputs: xpos      horizontal position of bottom left corner of image, columns from the left edge
+//                     must be less than 84
+//                     0 is on the left; 82 is near the right
+//         ypos      vertical position of bottom left corner of image, rows from the top edge
+//                     must be less than 48
+//                     2 is near the top; 47 is at the bottom
+//         ptr       pointer to a 16 color BMP image
+//         threshold grayscale colors above this number make corresponding pixel 'on'
+//                     0 to 14
+//                     0 is fine for ships, explosions, projectiles, and bunkers
+// outputs: none
+void LCD_PrintBMP(uint32_t xpos, uint32_t ypos, const uint8_t *ptr, uint32_t threshold);
 
-// -----------------------LCD _OutFix----------------------
-// Output characters to LCD display in fixed-point format
-// unsigned decimal, resolution 0.001, range 0.000 to 9.999
-// Inputs:  unsigned 32-bit number
-// Outputs: none
-// E.g., data=0,    then output "0.000 "
-//       data=3,    then output "0.003 "
-//       data=89,   then output "0.089 "
-//       data=123,  then output "0.123 "
-//       data=9999, then output "9.999 "
-//       data>9999, then output "*.*** "
-// students implement this as part of Lab 7
-void LCD_OutFix(uint32_t data);
+// There is a buffer in RAM that holds one screen
+// This routine clears this buffer
+void LCD_ClearBuffer(void);
 
-// *************** LCD_PlotClear ********************
-// Clear the graphics buffer, set X coordinate to 0
-// It does not output to display until LCD_ShowPlot called
-// Inputs: ymin and ymax are range of the plot
-// Outputs: none
-void LCD_PlotClear(int32_t ymin, int32_t ymax);
-
-// *************** LCD_PlotPoint ********************
-// Used in the voltage versus time plot, plot one point at y
-// It does not output to display until LCD_ShowPlot called
-// Inputs: y is the y coordinate of the point plotted
-// Outputs: none
-void LCD_PlotPoint(int32_t y);
-
-// *************** LCD_PlotNext ********************
-// Used in all the plots to step the X coordinate one pixel
-// X steps from 0 to 83, then back to 0 again
-// It does not output to display until LCD_ShowPlot called
-// Inputs: none
-// Outputs: none
-void LCD_PlotNext(void);
-
-// *************** LCD_ShowPlot ********************
-// Dump data to display
-// Inputs: none
-// Outputs: none
-void LCD_ShowPlot(void);
+//********LCD_DisplayBuffer*****************
+// Fill the whole screen by drawing a 48x84 screen image.
+// inputs: none
+// outputs: none
+// assumes: LCD is in default horizontal addressing mode (V = 0)
+void LCD_DisplayBuffer(void);
