@@ -3,7 +3,7 @@
 #include "tm4c123gh6pm.h"
 #include "random.h"
 #include "Nokia5110.h"
-#include "Resources.c"
+#include "Resources.h"
 // Setup for the file structure: 
 //     Controls.c (includes ADC, GPIO buttons)
 //     Communication.c (includes UART and FIFO)
