@@ -1,8 +1,29 @@
 #include <stdint.h>
+
+// Definition of Game Objects
+
+struct Player{
+    uint8_t xpos,ypos;
+    uint8_t lives;
+};
+typedef struct Player player;
+
+struct Enemy{
+    uint8_t xpos,ypos;
+    uint8_t alive;
+};
+typedef struct Enemy enemy;
+
+
+
+
+
+
+
 // Definitions for bitmap images
 
 // Main Splash Logo
-const uint8_t logo[] = {};
+const uint8_t logo[1] = {0x00};
 
 // Testing Enemy graphic (from Yerraballi's Code)  
 const uint8_t SmallEnemy30PointA[] = {

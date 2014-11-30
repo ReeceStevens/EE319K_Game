@@ -1,10 +1,7 @@
-#include "tm4c123gh6pm.h"
 #include <stdio.h>
 #include <stdint.h>
-
+#include "tm4c123gh6pm.h"
 #include "random.h"
-#include "LCD.h"
-#include "LCD.s"
 #include "Nokia5110.h"
 #include "Resources.c"
 // Setup for the file structure: 
@@ -28,6 +25,8 @@
 //                   Try to get highest score without
 //                   running out of lives.
 
+#define ONE_PLAYER      42
+#define TWO_PLAYER      -42
 #define ENEMY_HEIGHT    10
 
 void startScreen(int mode){
@@ -47,7 +46,7 @@ int main(void){
     LCD_Init();
     LCD_ClearBuffer();
     LCD_DisplayBuffer();
-     
+    startScreen(ONE_PLAYER); 
      
     return 0;
 }

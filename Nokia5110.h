@@ -111,7 +111,7 @@ void LCD_OutDec(uint16_t n);
 // inputs: newX  new X-position of the cursor (0<=newX<=11)
 //         newY  new Y-position of the cursor (0<=newY<=5)
 // outputs: none
-void LCD_Goto(uint32_t newX, uint32_t newY);
+void LCD_Goto(uint8_t newX, uint8_t newY);
 
 //********LCD_Clear*****************
 // Clear the LCD by writing zeros to the entire screen and

@@ -28,7 +28,7 @@
 #include <stdint.h>
 #include "fifo.h"
 #include "UART.h"
-#include "inc/tm4c123gh6pm.h"
+#include "tm4c123gh6pm.h"
 
 
 #define UART_FR_TXFF            0x00000020  // UART Transmit FIFO Full
@@ -44,10 +44,10 @@
 // Input: none
 // Output: none
 void UART_Init(void){
+		uint32_t delay = 1000000;
   SYSCTL_RCGCUART_R |= 0x02;            // activate UART1
   SYSCTL_RCGCGPIO_R |= 0x04;            // activate port C
   while((SYSCTL_PRGPIO_R&0x01) == 0){};
-	uint32_t delay = 1000000;
 	while (delay != 0) {delay--;}
   UART1_CTL_R &= ~UART_CTL_UARTEN;      // disable UART
   UART1_IBRD_R = 50;                    // IBRD = int(80,000,000 / (16 * 100,000)) = int(50)

@@ -1,0 +1,129 @@
+<html>
+<body>
+<pre>
+<h1>µVision Build Log</h1>
+<h2>Project:</h2>
+Z:\home\reece\EE319K_Game\Lab10.uvproj
+Project File Date:  11/29/2014
+
+<h2>Output:</h2>
+Rebuild target 'Target 1'
+compiling ADC.c...
+compiling dac.c...
+compiling fifo.c...
+fifo.h(5): warning:  #1-D: last line of file ends without a newline
+  int8_t fifo_Get(int32_t *dptr);
+fifo.c(36): warning:  #1-D: last line of file ends without a newline
+       }
+fifo.c: 2 warnings, 0 errors
+compiling Lab10.c...
+compiling Nokia5110.c...
+compiling Resources.c...
+compiling Sound.c...
+compiling UART.c...
+fifo.h(5): warning:  #1-D: last line of file ends without a newline
+  int8_t fifo_Get(int32_t *dptr);
+UART.c(263): warning:  #1-D: last line of file ends without a newline
+  }
+UART.c: 2 warnings, 0 errors
+assembling Print.s...
+Print.s(107): warning: A1786W: This instruction using SP is deprecated and may not work in future architecture revisions
+assembling random.s...
+assembling startup.s...
+linking...
+.\Lab10.axf: Error: L6200E: Symbol logo multiply defined (by resources.o and lab10.o).
+.\Lab10.axf: Error: L6200E: Symbol SmallEnemy30PointA multiply defined (by resources.o and lab10.o).
+.\Lab10.axf: Error: L6200E: Symbol SmallEnemy30PointB multiply defined (by resources.o and lab10.o).
+Not enough information to list image symbols.
+Not enough information to list the image map.
+Finished: 2 information, 0 warning and 3 error messages.
+".\Lab10.axf" - 3 Error(s), 5 Warning(s).
+Target not created
+</pre>
+</body>
+</html>
+ created
+hitecture revisions
+assembling random.s...
+assembling startup.s...
+".\Lab10.axf" - 5 Error(s), 5 Warning(s).
+Target not created
+ng: A1786W: This instruction using SP is deprecated and may not work in future architecture revisions
+assembling random.s...
+assembling startup.s...
+".\Lab10.axf" - 6 Error(s), 5 Warning(s).
+Target not created
+#20: identifier "Red" is undefined
+  ; Red SparkFun Nokia 5110 (LCD-10168)
+LCD.s(11): error:  #65: expected a ";"
+  ; Red SparkFun Nokia 5110 (LCD-10168)
+LCD.s(12): error:  #169: expected a declaration
+  ; -----------------------------------
+LCD.s(13): error:  #20: identifier "Nokia" is undefined
+  ; Signal        (Nokia 5110) LaunchPad pin
+LCD.s(13): error:  #18: expected a ")"
+  ; Signal        (Nokia 5110) LaunchPad pin
+LCD.s(13): error:  #141-D: unnamed prototyped parameters not allowed when body is present
+  ; Signal        (Nokia 5110) LaunchPad pin
+LCD.s(13): error:  #130: expected a "{"
+  ; Signal        (Nokia 5110) LaunchPad pin
+LCD.s(77): error:  #10: "#" not expected here
+                        AND R2, #0x10                           ; Isolate bit 4
+LCD.s(78): error:  #10: "#" not expected here
+                        CMP R2, #0                                      ; Check bit 4
+LCD.s(85): error:  #10: "#" not expected here
+                        BIC R2, #0x40                           ; clears D/C=PA6 to zero        
+LCD.s(93): error:  #10: "#" not expected here
+                        AND R2, #0x10                           ; Isolate bit 4
+LCD.s(94): error:  #10: "#" not expected here
+                        CMP R2, #0                                      ; Check bit 4
+LCD.s(123): error:  #10: "#" not expected here
+                        AND R2, #0x02                           ; Isolate bit 1
+LCD.s(124): error:  #10: "#" not expected here
+                        CMP R2, #0
+LCD.s(132): error:  #10: "#" not expected here
+                        ORR R2, #0x40                           ; sets D/C=PA6 to one   
+LCD.s(147): warning:  #1-D: last line of file ends without a newline
+      
+Resources.c(5): warning:  #12-D: parsing restarts here after previous syntax error
+  const uint8_t logo[] = {};
+Lab10.c(34): warning:  #223-D: function "LCD_ClearBuffer" declared implicitly
+      LCD_ClearBuffer();
+Lab10.c(35): warning:  #223-D: function "LCD_DisplayBuffer" declared implicitly
+      LCD_DisplayBuffer();
+Lab10.c(36): warning:  #223-D: function "LCD_PrintBMP" declared implicitly
+      LCD_PrintBMP(0, ENEMY_HEIGHT - 1, SmallEnemy30PointA, 0);
+Lab10.c(47): warning:  #223-D: function "LCD_Init" declared implicitly
+      LCD_Init();
+Lab10.c(48): warning:  #223-D: function "LCD_ClearBuffer" declared implicitly
+      LCD_ClearBuffer();
+Lab10.c(49): warning:  #223-D: function "LCD_DisplayBuffer" declared implicitly
+      LCD_DisplayBuffer();
+Lab10.c: 8 warnings, 29 errors
+compiling Nokia5110.c...
+Nokia5110.c(56): error:  #5: cannot open source input file "inc/tm4c123gh6pm.h": No such file or directory
+  #include "inc/tm4c123gh6pm.h"
+Nokia5110.c: 0 warnings, 1 error
+compiling Resources.c...
+Resources.c(5): error:  #29: expected an expression
+  const uint8_t logo[] = {};
+Resources.c(5): error:  #1514: an empty initializer is invalid for an array with unspecified bound
+  const uint8_t logo[] = {};
+Resources.c: 0 warnings, 2 errors
+compiling Sound.c...
+Sound.c(16): error:  #5: cannot open source input file "inc//tm4c123gh6pm.h": No such file or directory
+  #include "inc//tm4c123gh6pm.h"
+Sound.c: 0 warnings, 1 error
+compiling UART.c...
+fifo.h(5): warning:  #1-D: last line of file ends without a newline
+  int8_t fifo_Get(int32_t *dptr);
+UART.c(31): error:  #5: cannot open source input file "inc/tm4c123gh6pm.h": No such file or directory
+  #include "inc/tm4c123gh6pm.h"
+UART.c: 1 warning, 1 error
+assembling LCD.s...
+assembling Print.s...
+Print.s(107): warning: A1786W: This instruction using SP is deprecated and may not work in future architecture revisions
+assembling random.s...
+assembling startup.s...
+".\Lab10.axf" - 34 Error(s), 12 Warning(s).
+Target not created

@@ -1,0 +1,46 @@
+Dependencies for Project 'Lab10', Target 'Target 1': (DO NOT MODIFY !)
+F (.\ADC.c)(0x547AB31F)(-c --cpu Cortex-M4 -D__EVAL --li -g -O0 --apcs=interwork -I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-o .\adc.o --omf_browse .\adc.crf --depend .\adc.d)
+I (C:\Keil\ARM\ARMCC\include\stdint.h)(0x51C87C24)
+I (tm4c123gh6pm.h)(0x54757F66)
+F (.\dac.c)(0x547AB31F)(-c --cpu Cortex-M4 -D__EVAL --li -g -O0 --apcs=interwork -I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-o .\dac.o --omf_browse .\dac.crf --depend .\dac.d)
+I (C:\Keil\ARM\ARMCC\include\stdint.h)(0x51C87C24)
+I (tm4c123gh6pm.h)(0x54757F66)
+I (dac.h)(0x54757B42)
+F (.\fifo.c)(0x547AB31F)(-c --cpu Cortex-M4 -D__EVAL --li -g -O0 --apcs=interwork -I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-o .\fifo.o --omf_browse .\fifo.crf --depend .\fifo.d)
+I (C:\Keil\ARM\ARMCC\include\stdio.h)(0x51C87C24)
+I (C:\Keil\ARM\ARMCC\include\stdint.h)(0x51C87C24)
+I (tm4c123gh6pm.h)(0x54757F66)
+I (fifo.h)(0x54757AF7)
+F (.\Lab10.c)(0x547AB439)(-c --cpu Cortex-M4 -D__EVAL --li -g -O0 --apcs=interwork -I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-o .\lab10.o --omf_browse .\lab10.crf --depend .\lab10.d)
+I (C:\Keil\ARM\ARMCC\include\stdio.h)(0x51C87C24)
+I (C:\Keil\ARM\ARMCC\include\stdint.h)(0x51C87C24)
+I (tm4c123gh6pm.h)(0x54757F66)
+I (random.h)(0x54757BC0)
+I (Nokia5110.h)(0x547AB494)
+I (Resources.c)(0x547AB56D)
+F (.\Nokia5110.c)(0x547AB439)(-c --cpu Cortex-M4 -D__EVAL --li -g -O0 --apcs=interwork -I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-o .\nokia5110.o --omf_browse .\nokia5110.crf --depend .\nokia5110.d)
+I (C:\Keil\ARM\ARMCC\include\stdint.h)(0x51C87C24)
+I (Nokia5110.h)(0x547AB494)
+I (tm4c123gh6pm.h)(0x54757F66)
+F (.\Resources.c)(0x547AB56D)(-c --cpu Cortex-M4 -D__EVAL --li -g -O0 --apcs=interwork -I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-o .\resources.o --omf_browse .\resources.crf --depend .\resources.d)
+I (C:\Keil\ARM\ARMCC\include\stdint.h)(0x51C87C24)
+F (.\Sound.c)(0x547AB439)(-c --cpu Cortex-M4 -D__EVAL --li -g -O0 --apcs=interwork -I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-o .\sound.o --omf_browse .\sound.crf --depend .\sound.d)
+I (C:\Keil\ARM\ARMCC\include\stdint.h)(0x51C87C24)
+I (dac.h)(0x54757B42)
+I (tm4c123gh6pm.h)(0x54757F66)
+F (.\UART.c)(0x547AB516)(-c --cpu Cortex-M4 -D__EVAL --li -g -O0 --apcs=interwork -I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-o .\uart.o --omf_browse .\uart.crf --depend .\uart.d)
+I (C:\Keil\ARM\ARMCC\include\stdint.h)(0x51C87C24)
+I (fifo.h)(0x54757AF7)
+I (UART.h)(0x54757AC9)
+I (tm4c123gh6pm.h)(0x54757F66)
+F (.\ADC.h)(0x54757A86)()
+F (.\dac.h)(0x54757B42)()
+F (.\fifo.h)(0x54757AF7)()
+F (.\Nokia5110.h)(0x547AB494)()
+F (.\random.h)(0x54757BC0)()
+F (.\Sound.h)(0x54757B6C)()
+F (.\tm4c123gh6pm.h)(0x54757F66)()
+F (.\UART.h)(0x54757AC9)()
+F (.\Print.s)(0x54757AA8)(--cpu Cortex-M4 --li --pd "__EVAL SETA 1" -g --apcs=interwork -I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include--list .\print.lst --xref -o .\print.o --depend .\print.d)
+F (.\random.s)(0x54757BB9)(--cpu Cortex-M4 --li --pd "__EVAL SETA 1" -g --apcs=interwork -I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include--list .\random.lst --xref -o .\random.o --depend .\random.d)
+F (.\startup.s)(0x54757B13)(--cpu Cortex-M4 --li --pd "__EVAL SETA 1" -g --apcs=interwork -I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include--list .\startup.lst --xref -o .\startup.o --depend .\startup.d)

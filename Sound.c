@@ -13,7 +13,7 @@
 // this file also contains an private functions and private data
 #include <stdint.h>
 #include "dac.h"
-#include "inc//tm4c123gh6pm.h"
+#include "tm4c123gh6pm.h"
 
 // 4-bit 32 element sine wave
 
