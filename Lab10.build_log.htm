@@ -4,7 +4,7 @@
 <h1>µVision Build Log</h1>
 <h2>Project:</h2>
 Z:\home\reece\EE319K_Game\Lab10.uvproj
-Project File Date:  11/30/2014
+Project File Date:  12/01/2014
 
 <h2>Output:</h2>
 Rebuild target 'Target 1'
@@ -17,8 +17,25 @@ fifo.c(36): warning:  #1-D: last line of file ends without a newline
        }
 fifo.c: 2 warnings, 0 errors
 compiling Lab10.c...
+Lab10.c(318): warning:  #550-D: variable "alien30_1" was set but never used
+      enemy alien30_1;
+Lab10.c(320): warning:  #550-D: variable "player" was set but never used
+      player player;
+Lab10.c: 2 warnings, 0 errors
 compiling Nokia5110.c...
-compiling Resources.c...
+Nokia5110.c(249): warning:  #223-D: function "LCD_WriteCommand" declared implicitly
+    LCD_WriteCommand(0x21);               // chip active; horizontal addressing mode (V = 0); use extended instruction set (H = 1)
+Nokia5110.c(273): warning:  #223-D: function "LCD_WriteData" declared implicitly
+    LCD_WriteData(0x00);                  // blank vertical line padding
+Nokia5110.c(306): warning:  #223-D: function "LCD_WriteCommand" declared implicitly
+    LCD_WriteCommand(0x80|(newX*7));      // setting bit 7 updates X-position
+Nokia5110.c(319): warning:  #223-D: function "LCD_WriteData" declared implicitly
+      LCD_WriteData(0x00);
+Nokia5110.c(334): warning:  #223-D: function "LCD_WriteData" declared implicitly
+      LCD_WriteData(ptr[i]);
+Nokia5110.c(416): warning:  #223-D: function "LCD_WriteData" declared implicitly
+      LCD_WriteData(PlotImage[i]);
+Nokia5110.c: 6 warnings, 0 errors
 compiling Sound.c...
 compiling UART.c...
 fifo.h(5): warning:  #1-D: last line of file ends without a newline
@@ -30,35 +47,15 @@ assembling Print.s...
 Print.s(107): warning: A1786W: This instruction using SP is deprecated and may not work in future architecture revisions
 assembling random.s...
 assembling startup.s...
+assembling LCD.s...
 linking...
-.\Lab10.axf: Error: L6200E: Symbol logo multiply defined (by resources.o and lab10.o).
-.\Lab10.axf: Error: L6200E: Symbol SmallEnemy30PointA multiply defined (by resources.o and lab10.o).
-.\Lab10.axf: Error: L6200E: Symbol SmallEnemy30PointB multiply defined (by resources.o and lab10.o).
-.\Lab10.axf: Error: L6200E: Symbol SmallEnemy20PointA multiply defined (by resources.o and lab10.o).
-.\Lab10.axf: Error: L6200E: Symbol SmallEnemy20PointB multiply defined (by resources.o and lab10.o).
-.\Lab10.axf: Error: L6200E: Symbol SmallEnemy10PointA multiply defined (by resources.o and lab10.o).
-.\Lab10.axf: Error: L6200E: Symbol SmallEnemy10PointB multiply defined (by resources.o and lab10.o).
-.\Lab10.axf: Error: L6200E: Symbol PlayerShip0 multiply defined (by resources.o and lab10.o).
-.\Lab10.axf: Error: L6200E: Symbol SmallEnemyBonus0 multiply defined (by resources.o and lab10.o).
-.\Lab10.axf: Error: L6200E: Symbol Bunker0 multiply defined (by resources.o and lab10.o).
-.\Lab10.axf: Error: L6200E: Symbol Bunker1 multiply defined (by resources.o and lab10.o).
-.\Lab10.axf: Error: L6200E: Symbol Bunker2 multiply defined (by resources.o and lab10.o).
-.\Lab10.axf: Error: L6200E: Symbol Bunker3 multiply defined (by resources.o and lab10.o).
-.\Lab10.axf: Error: L6200E: Symbol BigExplosion0 multiply defined (by resources.o and lab10.o).
-.\Lab10.axf: Error: L6200E: Symbol BigExplosion1 multiply defined (by resources.o and lab10.o).
-.\Lab10.axf: Error: L6200E: Symbol SmallExplosion0 multiply defined (by resources.o and lab10.o).
-.\Lab10.axf: Error: L6200E: Symbol SmallExplosion1 multiply defined (by resources.o and lab10.o).
-.\Lab10.axf: Error: L6200E: Symbol Missile0 multiply defined (by resources.o and lab10.o).
-.\Lab10.axf: Error: L6200E: Symbol Missile1 multiply defined (by resources.o and lab10.o).
-.\Lab10.axf: Error: L6200E: Symbol Missile2 multiply defined (by resources.o and lab10.o).
-.\Lab10.axf: Error: L6200E: Symbol Laser0 multiply defined (by resources.o and lab10.o).
-.\Lab10.axf: Error: L6200E: Symbol Laser1 multiply defined (by resources.o and lab10.o).
-Not enough information to list image symbols.
-Not enough information to list the image map.
-Finished: 2 information, 0 warning and 22 error messages.
-".\Lab10.axf" - 22 Error(s), 5 Warning(s).
+Program Size: Code=3478 RO-data=4486 RW-data=40 ZI-data=2128  
+".\Lab10.axf" - 0 Error(s), 13 Warning(s).
+h Execution region ER_RW with Execution range [0x00000100,0x00000128).
+.\Lab10.axf: Error: L6221E: Execution region ER_RO with Execution range [0x00000000,0x00001f1c) overlaps with Execution region ER_ZI with Execution range [0x00000128,0x00000978).
+Finished: 0 information, 0 warning and 2 error messages.
+".\Lab10.axf" - 2 Error(s), 13 Warning(s).
 Target not created
-list the image map.
-Finished: 2 information, 0 warning and 22 error messages.
-".\Lab10.axf" - 22 Error(s), 6 Warning(s).
+ormation, 0 warning and 5 error messages.
+".\Lab10.axf" - 5 Error(s), 13 Warning(s).
 Target not created

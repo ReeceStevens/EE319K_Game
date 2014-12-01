@@ -1,0 +1,12 @@
+*.d
+*.o
+*.dll
+*.crf
+*.axf
+*.lnp
+*.uvproj*
+*.uvgui*
+*.map
+*.lst
+*.uvopt*
+*.htm*

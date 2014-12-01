@@ -54,6 +54,7 @@
 #include <stdint.h>
 #include "Nokia5110.h"
 #include "tm4c123gh6pm.h"
+
 #define DC                      (*((volatile int32_t *)0x40004100))
 #define DC_COMMAND              0
 #define DC_DATA                 0x40
@@ -78,6 +79,8 @@
 #define SSI_CC_CS_SYSPLL        0x00000000  // Either the system clock (if the
                                             // PLL bypass is in effect) or the
                                             // PLL output (default)
+#define SCREENW     84
+#define SCREENH     48
 
 
 // This table contains the hex values that represent pixels
@@ -191,13 +194,13 @@ static const char ASCII[][5] = {
 // inputs: message  8-bit command to transmit
 // outputs: none
 // assumes: SSI0 and port A have already been initialized and enabled
-void LCD_WriteCommand(uint8_t message);
+//void LCD_WriteCommand(unsigned char message);
 
 // This is a helper function that sends an 8-bit data to the LCD.
 // inputs: message  8-bit data to transmit
 // outputs: none
 // assumes: SSI0 and port A have already been initialized and enabled
-void LCD_WriteData(uint8_t message);
+//void LCD_WriteData(unsigned short message);
 
 //********LCD_Init*****************
 // Initialize Nokia 5110 48x84 LCD by sending the proper
@@ -303,6 +306,7 @@ void LCD_Goto(uint8_t newX, uint8_t newY){
   LCD_WriteCommand(0x80|(newX*7));      // setting bit 7 updates X-position
   LCD_WriteCommand(0x40|newY);          // setting bit 6 updates Y-position
 }
+
 
 //********LCD_Clear*****************
 // Clear the LCD by writing zeros to the entire screen and
@@ -412,3 +416,99 @@ void LCD_ShowPlot(void){int i;
     LCD_WriteData(PlotImage[i]);
   }
 }
+uint8_t Screen[SCREENW*SCREENH/8]; // buffer stores the next image to be printed on the screen
+
+//********LCD_PrintBMP*****************
+// Bitmaps defined above were created for the LM3S1968 or
+// LM3S8962's 4-bit grayscale OLED display.  They also
+// still contain their header data and may contain padding
+// to preserve 4-byte alignment.  This function takes a
+// bitmap in the previously described format and puts its
+// image data in the proper location in the buffer so the
+// image will appear on the screen after the next call to
+//   LCD_DisplayBuffer();
+// The interface and operation of this process is modeled
+// after RIT128x96x4_BMP(x, y, image);
+// inputs: xpos      horizontal position of bottom left corner of image, columns from the left edge
+//                     must be less than 84
+//                     0 is on the left; 82 is near the right
+//         ypos      vertical position of bottom left corner of image, rows from the top edge
+//                     must be less than 48
+//                     2 is near the top; 47 is at the bottom
+//         ptr       pointer to a 16 color BMP image
+//         threshold grayscale colors above this number make corresponding pixel 'on'
+//                     0 to 14
+//                     0 is fine for ships, explosions, projectiles, and bunkers
+// outputs: none
+void LCD_PrintBMP(uint32_t xpos, uint32_t ypos, const uint8_t *ptr, uint32_t threshold){
+  int32_t width = ptr[18], height = ptr[22], i, j;
+  uint32_t screenx, screeny;
+  uint32_t mask;
+  // check for clipping
+  if((height <= 0) ||              // bitmap is unexpectedly encoded in top-to-bottom pixel order
+     ((width%2) != 0) ||           // must be even number of columns
+     ((xpos + width) > SCREENW) || // right side cut off
+     (ypos < (height - 1)) ||      // top cut off
+     (ypos > SCREENH))           { // bottom cut off
+    return;
+  }
+  if(threshold > 14){
+    threshold = 14;             // only full 'on' turns pixel on
+  }
+  // bitmaps are encoded backwards, so start at the bottom left corner of the image
+  screeny = ypos/8;
+  screenx = xpos + SCREENW*screeny;
+  mask = ypos%8;                // row 0 to 7
+  mask = 0x01<<mask;            // now stores a mask 0x01 to 0x80
+  j = ptr[10];                  // byte 10 contains the offset where image data can be found
+  for(i=1; i<=(width*height/2); i=i+1){
+    // the left pixel is in the upper 4 bits
+    if(((ptr[j]>>4)&0xF) > threshold){
+      Screen[screenx] |= mask;
+    } else{
+      Screen[screenx] &= ~mask;
+    }
+    screenx = screenx + 1;
+    // the right pixel is in the lower 4 bits
+    if((ptr[j]&0xF) > threshold){
+      Screen[screenx] |= mask;
+    } else{
+      Screen[screenx] &= ~mask;
+    }
+    screenx = screenx + 1;
+    j = j + 1;
+    if((i%(width/2)) == 0){     // at the end of a row
+      if(mask > 0x01){
+        mask = mask>>1;
+      } else{
+        mask = 0x80;
+        screeny = screeny - 1;
+      }
+      screenx = xpos + SCREENW*screeny;
+      // bitmaps are 32-bit word aligned
+      switch((width/2)%4){      // skip any padding
+        case 0: j = j + 0; break;
+        case 1: j = j + 3; break;
+        case 2: j = j + 2; break;
+        case 3: j = j + 1; break;
+      }
+    }
+  }
+}
+// There is a buffer in RAM that holds one screen
+// This routine clears this buffer
+void LCD_ClearBuffer(void){int32_t i;
+  for(i=0; i<SCREENW*SCREENH/8; i=i+1){
+    Screen[i] = 0;              // clear buffer
+  }
+}
+
+//********LCD_DisplayBuffer*****************
+// Fill the whole screen by drawing a 48x84 screen image.
+// inputs: none
+// outputs: none
+// assumes: LCD is in default horizontal addressing mode (V = 0)
+void LCD_DisplayBuffer(void){
+  LCD_DrawFullImage(Screen);
+}
+

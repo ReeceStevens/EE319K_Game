@@ -4,12 +4,12 @@
 ".\fifo.o"
 ".\lab10.o"
 ".\nokia5110.o"
-".\resources.o"
 ".\sound.o"
 ".\uart.o"
 ".\print.o"
 ".\random.o"
 ".\startup.o"
---ro-base 0x00000000 --entry 0x00000000 --rw-base 0x00000000 --entry Reset_Handler --first __Vectors --strict --summary_stderr --info summarysizes --map --xref --callgraph --symbols
+".\lcd.o"
+--ro-base 0x00000000 --entry 0x00000000 --rw-base 0x00010000 --entry Reset_Handler --first __Vectors --strict --summary_stderr --info summarysizes --map --xref --callgraph --symbols
 --info sizes --info totals --info unused --info veneers
 --list ".\Lab10.map" -o .\Lab10.axf

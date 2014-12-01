@@ -4,30 +4,33 @@
 
 struct Player{
     uint8_t xpos,ypos;
+    uint8_t alive; // If not alive, do not display on screen
     uint8_t lives;
-    // Pointer to bitmap graphic
+    uint8_t score;
+    const uint8_t *graphic;
 };
 typedef struct Player player;
 
 struct Enemy{
     uint8_t xpos,ypos;
-    uint8_t alive;
+    uint8_t alive; // If not alive, do not display on screen
     uint8_t shoot_freq;
-    // Pointer to bitmap graphic
+    uint8_t point_value;
+    const uint8_t *graphic;
 };
 typedef struct Enemy enemy;
 
-struct Barrier{
+struct Bunker{
     uint8_t xpos,ypos;
     uint8_t health;
-    // Pointer to bitmap graphic
+    const uint8_t *graphic;
 };
-typedef struct Barrier barrier;
+typedef struct Bunker bunker;
 
 struct Missle{
     uint8_t xpos,ypos;
     uint8_t direction; // 1 for up (player), 0 for down
-    // Pointer to bitmap graphic   
+    const uint8_t *graphic;
 };
 typedef struct Missle missle;
 

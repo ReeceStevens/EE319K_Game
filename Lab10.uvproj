@@ -431,11 +431,6 @@
               <FilePath>.\Nokia5110.c</FilePath>
             </File>
             <File>
-              <FileName>Resources.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\Resources.c</FilePath>
-            </File>
-            <File>
               <FileName>Sound.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\Sound.c</FilePath>

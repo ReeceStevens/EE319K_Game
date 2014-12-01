@@ -60,6 +60,9 @@
 #define CONTRAST                0xB9
 
 
+//void LCD_WriteCommand(unsigned char message);
+
+//void LCD_WriteData(unsigned short message);
 //********LCD_Init*****************
 // Initialize Nokia 5110 48x84 LCD by sending the proper
 // commands to the PCD8544 driver.  One new feature of the
