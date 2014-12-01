@@ -1,5 +1,4 @@
 *.d
-*.o
 *.dll
 *.crf
 *.axf
