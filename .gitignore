@@ -9,4 +9,6 @@
 *.map
 *.lst
 *.uvopt*
-*.htm*
+*.htm
+*.py*
+*.swp
