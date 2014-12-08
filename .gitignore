@@ -3,7 +3,6 @@
 *.crf
 *.axf
 *.lnp
-*.uvproj*
 *.uvgui*
 *.map
 *.lst
@@ -12,3 +11,4 @@
 *.py*
 *.swp
 *.o
+*.bak
