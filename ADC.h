@@ -15,3 +15,4 @@ void ADC_Init(void);
 // Input: none
 // Output: 12-bit result of ADC conversion
 uint32_t ADC_In(void);
+void GPIO_Init(void);

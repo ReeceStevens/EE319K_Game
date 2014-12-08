@@ -88,6 +88,29 @@ uint32_t ADC_In(void){uint32_t result;
   return result;
 }
 
+void GPIO_Init(void){
+	SYSCTL_RCGCGPIO_R |= 0x30; // Enable clock for Port E and F
+	volatile uint32_t delay = SYSCTL_RCGCGPIO_R;
+	
+	// Fire Button and Start Button
+	GPIO_PORTE_DEN_R |= 0x20;
+	GPIO_PORTE_AFSEL_R &= ~0x20;
+	GPIO_PORTE_AMSEL_R &= ~0x20;
+	GPIO_PORTE_DIR_R &= ~0x20;
+	GPIO_PORTE_PCTL_R &= ~0x00FF0000;
+	GPIO_PORTE_IS_R &= ~0x20; // Begin configuration for edge-triggered interrupts
+	GPIO_PORTE_IBE_R &= ~0x20;
+	GPIO_PORTE_IEV_R |= 0x20;
+	GPIO_PORTE_ICR_R = 0x20;
+	GPIO_PORTE_IM_R |= 0x20; // Configured for rising-edge interrupts
+	NVIC_PRI1_R = (NVIC_PRI1_R&0xFFFFFF00) | 0x00000040; // Make priority 5
+	NVIC_EN0_R = 0x00000010; // enable the interrupt in NVIC
+	
+	// LED
+	GPIO_PORTF_DEN_R |= 0x04;
+	GPIO_PORTF_DIR_R |= 0x04;
+	GPIO_PORTF_AFSEL_R &= ~0x04;
+}
  
 
 

@@ -7,19 +7,19 @@
 
   <Targets>
     <Target>
-      <TargetName>Target 1</TargetName>
+      <TargetName>SpaceInvaders</TargetName>
       <ToolsetNumber>0x4</ToolsetNumber>
       <ToolsetName>ARM-ADS</ToolsetName>
       <TargetOption>
         <TargetCommonOption>
-          <Device>Cortex-M4</Device>
-          <Vendor>ARM</Vendor>
-          <Cpu>CLOCK(12000000) CPUTYPE("Cortex-M4") ESEL ELITTLE</Cpu>
+          <Device>LM4F120H5QR</Device>
+          <Vendor>Texas Instruments</Vendor>
+          <Cpu>IRAM(0x20000000-0x20007FFF) IROM(0-0x3FFFF) CLOCK(8000000) CPUTYPE("Cortex-M4") FPU2</Cpu>
           <FlashUtilSpec></FlashUtilSpec>
-          <StartupFile></StartupFile>
-          <FlashDriverDll></FlashDriverDll>
-          <DeviceId>5125</DeviceId>
-          <RegisterFile></RegisterFile>
+          <StartupFile>"STARTUP\Luminary\Startup.s" ("Luminary Startup Code")</StartupFile>
+          <FlashDriverDll>UL2CM3(-O207 -S0 -C0 -FO7 -FD20000000 -FC800 -FN1 -FF0LM4F_256 -FS00 -FL040000)</FlashDriverDll>
+          <DeviceId>5919</DeviceId>
+          <RegisterFile>LM4Fxxxx.H</RegisterFile>
           <MemoryEnv></MemoryEnv>
           <Cmp></Cmp>
           <Asm></Asm>
@@ -35,8 +35,8 @@
           <BinPath></BinPath>
           <IncludePath></IncludePath>
           <LibPath></LibPath>
-          <RegisterFilePath></RegisterFilePath>
-          <DBRegisterFilePath></DBRegisterFilePath>
+          <RegisterFilePath>Luminary\</RegisterFilePath>
+          <DBRegisterFilePath>Luminary\</DBRegisterFilePath>
           <TargetStatus>
             <Error>0</Error>
             <ExitCodeStop>0</ExitCodeStop>
@@ -45,7 +45,7 @@
             <InvalidFlash>1</InvalidFlash>
           </TargetStatus>
           <OutputDirectory>.\</OutputDirectory>
-          <OutputName>Lab10</OutputName>
+          <OutputName>SpaceInvaders</OutputName>
           <CreateExecutable>1</CreateExecutable>
           <CreateLib>0</CreateLib>
           <CreateHexFile>0</CreateHexFile>
@@ -133,18 +133,18 @@
           <Target>
             <UseTarget>0</UseTarget>
             <LoadApplicationAtStartup>1</LoadApplicationAtStartup>
-            <RunToMain>0</RunToMain>
+            <RunToMain>1</RunToMain>
             <RestoreBreakpoints>1</RestoreBreakpoints>
             <RestoreWatchpoints>1</RestoreWatchpoints>
             <RestoreMemoryDisplay>1</RestoreMemoryDisplay>
             <RestoreFunctions>0</RestoreFunctions>
             <RestoreToolbox>1</RestoreToolbox>
-            <RestoreTracepoints>1</RestoreTracepoints>
+            <RestoreTracepoints>0</RestoreTracepoints>
             <RestoreSysVw>1</RestoreSysVw>
             <UsePdscDebugDescription>0</UsePdscDebugDescription>
           </Target>
           <RunDebugAfterBuild>0</RunDebugAfterBuild>
-          <TargetSelection>-1</TargetSelection>
+          <TargetSelection>2</TargetSelection>
           <SimDlls>
             <CpuDll></CpuDll>
             <CpuDllArguments></CpuDllArguments>
@@ -158,21 +158,21 @@
             <PeripheralDll></PeripheralDll>
             <PeripheralDllArguments></PeripheralDllArguments>
             <InitializationFile></InitializationFile>
-            <Driver></Driver>
+            <Driver>BIN\lmidk-agdi.dll</Driver>
           </TargetDlls>
         </DebugOption>
         <Utilities>
           <Flash1>
-            <UseTargetDll>0</UseTargetDll>
+            <UseTargetDll>1</UseTargetDll>
             <UseExternalTool>0</UseExternalTool>
             <RunIndependent>0</RunIndependent>
-            <UpdateFlashBeforeDebugging>0</UpdateFlashBeforeDebugging>
-            <Capability>0</Capability>
-            <DriverSelection>-1</DriverSelection>
+            <UpdateFlashBeforeDebugging>1</UpdateFlashBeforeDebugging>
+            <Capability>1</Capability>
+            <DriverSelection>4097</DriverSelection>
           </Flash1>
-          <bUseTDR>0</bUseTDR>
-          <Flash2></Flash2>
-          <Flash3></Flash3>
+          <bUseTDR>1</bUseTDR>
+          <Flash2>BIN\lmidk-agdi.dll</Flash2>
+          <Flash3>"" ()</Flash3>
           <Flash4></Flash4>
           <pFcarmOut></pFcarmOut>
           <pFcarmGrp></pFcarmGrp>
@@ -210,22 +210,22 @@
             <GenPPlst>0</GenPPlst>
             <AdsCpuType>"Cortex-M4"</AdsCpuType>
             <RvctDeviceName></RvctDeviceName>
-            <mOS>0</mOS>
+            <mOS>2</mOS>
             <uocRom>0</uocRom>
             <uocRam>0</uocRam>
-            <hadIROM>0</hadIROM>
-            <hadIRAM>0</hadIRAM>
+            <hadIROM>1</hadIROM>
+            <hadIRAM>1</hadIRAM>
             <hadXRAM>0</hadXRAM>
             <uocXRam>0</uocXRam>
-            <RvdsVP>0</RvdsVP>
+            <RvdsVP>1</RvdsVP>
             <hadIRAM2>0</hadIRAM2>
             <hadIROM2>0</hadIROM2>
-            <StupSel>0</StupSel>
+            <StupSel>8</StupSel>
             <useUlib>0</useUlib>
-            <EndSel>1</EndSel>
+            <EndSel>0</EndSel>
             <uLtcg>0</uLtcg>
-            <RoSelD>0</RoSelD>
-            <RwSelD>0</RwSelD>
+            <RoSelD>3</RoSelD>
+            <RwSelD>3</RwSelD>
             <CodeSel>0</CodeSel>
             <OptFeed>0</OptFeed>
             <NoZi1>0</NoZi1>
@@ -236,12 +236,12 @@
             <Ro1Chk>0</Ro1Chk>
             <Ro2Chk>0</Ro2Chk>
             <Ro3Chk>0</Ro3Chk>
-            <Ir1Chk>0</Ir1Chk>
+            <Ir1Chk>1</Ir1Chk>
             <Ir2Chk>0</Ir2Chk>
             <Ra1Chk>0</Ra1Chk>
             <Ra2Chk>0</Ra2Chk>
             <Ra3Chk>0</Ra3Chk>
-            <Im1Chk>0</Im1Chk>
+            <Im1Chk>1</Im1Chk>
             <Im2Chk>0</Im2Chk>
             <OnChipMemories>
               <Ocm1>
@@ -276,13 +276,13 @@
               </Ocm6>
               <IRAM>
                 <Type>0</Type>
-                <StartAddress>0x0</StartAddress>
-                <Size>0x0</Size>
+                <StartAddress>0x20000000</StartAddress>
+                <Size>0x8000</Size>
               </IRAM>
               <IROM>
-                <Type>0</Type>
+                <Type>1</Type>
                 <StartAddress>0x0</StartAddress>
-                <Size>0x0</Size>
+                <Size>0x40000</Size>
               </IROM>
               <XRAM>
                 <Type>0</Type>
@@ -307,7 +307,7 @@
               <OCR_RVCT4>
                 <Type>1</Type>
                 <StartAddress>0x0</StartAddress>
-                <Size>0x0</Size>
+                <Size>0x40000</Size>
               </OCR_RVCT4>
               <OCR_RVCT5>
                 <Type>1</Type>
@@ -331,8 +331,8 @@
               </OCR_RVCT8>
               <OCR_RVCT9>
                 <Type>0</Type>
-                <StartAddress>0x0</StartAddress>
-                <Size>0x0</Size>
+                <StartAddress>0x20000000</StartAddress>
+                <Size>0x8000</Size>
               </OCR_RVCT9>
               <OCR_RVCT10>
                 <Type>0</Type>
@@ -343,26 +343,26 @@
             <RvctStartVector></RvctStartVector>
           </ArmAdsMisc>
           <Cads>
-            <interw>1</interw>
+            <interw>0</interw>
             <Optim>1</Optim>
             <oTime>0</oTime>
             <SplitLS>0</SplitLS>
-            <OneElfS>0</OneElfS>
+            <OneElfS>1</OneElfS>
             <Strict>0</Strict>
             <EnumInt>0</EnumInt>
-            <PlainCh>0</PlainCh>
+            <PlainCh>1</PlainCh>
             <Ropi>0</Ropi>
             <Rwpi>0</Rwpi>
-            <wLevel>0</wLevel>
+            <wLevel>2</wLevel>
             <uThumb>0</uThumb>
             <uSurpInc>0</uSurpInc>
             <uC99>0</uC99>
             <useXO>0</useXO>
             <VariousControls>
-              <MiscControls></MiscControls>
-              <Define></Define>
+              <MiscControls>--C99</MiscControls>
+              <Define>rvmdk PART_LM4F120H5QR</Define>
               <Undefine></Undefine>
-              <IncludePath></IncludePath>
+              <IncludePath>..;..\..\..</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -390,7 +390,7 @@
             <RepFail>1</RepFail>
             <useFile>0</useFile>
             <TextAddressRange>0x00000000</TextAddressRange>
-            <DataAddressRange>0x00010000</DataAddressRange>
+            <DataAddressRange>0x20000000</DataAddressRange>
             <pXoBase></pXoBase>
             <ScatterFile></ScatterFile>
             <IncludeLibs></IncludeLibs>
@@ -403,47 +403,12 @@
       </TargetOption>
       <Groups>
         <Group>
-          <GroupName>Source Group 1</GroupName>
+          <GroupName>Source</GroupName>
           <Files>
             <File>
-              <FileName>ADC.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\ADC.c</FilePath>
-            </File>
-            <File>
-              <FileName>dac.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\dac.c</FilePath>
-            </File>
-            <File>
-              <FileName>fifo.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\fifo.c</FilePath>
-            </File>
-            <File>
-              <FileName>Lab10.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\Lab10.c</FilePath>
-            </File>
-            <File>
-              <FileName>Nokia5110.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\Nokia5110.c</FilePath>
-            </File>
-            <File>
-              <FileName>Sound.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\Sound.c</FilePath>
-            </File>
-            <File>
-              <FileName>UART.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\UART.c</FilePath>
-            </File>
-            <File>
-              <FileName>Print.s</FileName>
+              <FileName>startup.s</FileName>
               <FileType>2</FileType>
-              <FilePath>.\Print.s</FilePath>
+              <FilePath>.\startup.s</FilePath>
             </File>
             <File>
               <FileName>random.s</FileName>
@@ -451,14 +416,54 @@
               <FilePath>.\random.s</FilePath>
             </File>
             <File>
-              <FileName>startup.s</FileName>
-              <FileType>2</FileType>
-              <FilePath>.\startup.s</FilePath>
+              <FileName>TExaS.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\TExaS.c</FilePath>
+            </File>
+            <File>
+              <FileName>DAC.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\DAC.c</FilePath>
+            </File>
+            <File>
+              <FileName>ADC.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\ADC.c</FilePath>
+            </File>
+            <File>
+              <FileName>Sound.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Sound.c</FilePath>
             </File>
             <File>
               <FileName>LCD.s</FileName>
               <FileType>2</FileType>
               <FilePath>.\LCD.s</FilePath>
+            </File>
+            <File>
+              <FileName>Nokia5110.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Nokia5110.c</FilePath>
+            </File>
+            <File>
+              <FileName>Print.s</FileName>
+              <FileType>2</FileType>
+              <FilePath>.\Print.s</FilePath>
+            </File>
+            <File>
+              <FileName>SpaceInvaders.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\SpaceInvaders.c</FilePath>
+            </File>
+            <File>
+              <FileName>Timers.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Timers.c</FilePath>
+            </File>
+            <File>
+              <FileName>Print.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\Print.h</FilePath>
             </File>
           </Files>
         </Group>

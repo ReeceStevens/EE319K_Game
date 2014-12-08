@@ -105,7 +105,7 @@ void LCD_OutString(char *ptr);
 // Inputs: n  16-bit unsigned number
 // Outputs: none
 // assumes: LCD is in default horizontal addressing mode (V = 0)
-void LCD_OutDec(uint16_t n);
+//void LCD_OutDec(uint16_t n);
 
 //********LCD_Goto*****************
 // Move the cursor to the desired X- and Y-position.  The

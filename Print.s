@@ -17,6 +17,9 @@
 	PRESERVE8
     AREA    |.text|, CODE, READONLY, ALIGN=2
     THUMB
+		
+		export LCD_OutDec
+		export LCD_OutFix
 
 quo 	EQU	14
 rem		EQU 15
@@ -66,6 +69,7 @@ Done
 ; deallocation phase
 	ADD		SP, #16			
 	POP		{R4-R11, R0, LR}
+	BX LR
 
     ; Approach: Convert the decimal number to ASCII, call LCD_OutChar to print digit
     ; Recursively divide input by 10 to isolate each digit

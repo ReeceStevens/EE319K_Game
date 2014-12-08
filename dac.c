@@ -19,14 +19,14 @@
 // Initialize 4-bit DAC, called once 
 // Input: none
 // Output: none
-// Description: We will use PA2-5 to interface a 4-bit DAC
+// Description: We will use PD0-3 to interface a 4-bit DAC
 void DAC_Init(void){
 	volatile uint32_t delay;
-		SYSCTL_RCGCGPIO_R |= 0x01;
+		SYSCTL_RCGCGPIO_R |= 0x02;
 		delay = SYSCTL_RCGCGPIO_R;
-		GPIO_PORTA_DEN_R |= 0x3C;
-		GPIO_PORTA_DIR_R |= 0x3C;
-		GPIO_PORTA_AFSEL_R &= ~0x3C;
+		GPIO_PORTB_DEN_R |= 0x0F;
+		GPIO_PORTB_DIR_R |= 0x0F;
+		GPIO_PORTB_AFSEL_R &= ~0x0F;
 		
 }
 
@@ -36,8 +36,8 @@ void DAC_Init(void){
 // Output: none
 // Description: Write the given data to the DAC
 void DAC_Out(uint32_t data){
-		data = data << 2; 		// pins start at PA2
+		//data = data << 2; 		// pins start at PA2
 		//data &= 0x3C;		// Change all unused bits to zero for write safety
-		GPIO_PORTA_DATA_R &= ~0x3C; // Clear data bits to receive new data
-		GPIO_PORTA_DATA_R |= data;	// Add new ones
+		GPIO_PORTB_DATA_R &= ~0x0F; // Clear data bits to receive new data
+		GPIO_PORTB_DATA_R |= data;	// Add new ones
 }
